@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = 'dilip087/event-app'
         DOCKER_PATH = 'C:\\Users\\itzme\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe'
-        KUBECTL_PATH = 'C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.exe'
+        KUBECTL_PATH = 'C:\\Users\\itzme\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe'
         DOCKER_HOST = 'npipe:////./pipe/docker_engine'
         DOCKER_CONFIG = 'C:\\Users\\itzme\\.docker'
     }

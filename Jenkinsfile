@@ -25,7 +25,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 withCredentials([string(credentialsId: 'docker-hub-password', variable: 'DOCKER_PASSWORD')]) {
-                    bat "echo %DOCKER_PASSWORD% | \"${env.DOCKER_PATH}\" login -u dilip087 --password-stdin"
+                    bat "\"${env.DOCKER_PATH}\" login -u dilip087 -p %DOCKER_PASSWORD%"
                     bat "\"${env.DOCKER_PATH}\" push ${IMAGE_NAME}:v1"
                 }
             }

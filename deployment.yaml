@@ -9,8 +9,8 @@ spec:
       app: event-app
   template:
     metadata:
-      labels:        # Make sure 'labels:' is here
-        app: event-app # And 'app:' is indented properly under it
+      labels:
+        app: event-app
     spec:
       containers:
       - name: event-container

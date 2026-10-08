@@ -4,6 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = 'dilip087/event-app'
         DOCKER_PATH = 'C:\\Users\\itzme\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe'
+        DOCKER_HOST = 'npipe:////./pipe/docker_engine'
     }
     
     stages {

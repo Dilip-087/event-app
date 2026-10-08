@@ -3,6 +3,9 @@ pipeline {
     
     environment {
         IMAGE_NAME = 'dilip087/event-app'
+        // Full paths for Windows system execution
+        DOCKER_PATH = 'C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe'
+        KUBECTL_PATH = 'C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.exe'
     }
     
     stages {
@@ -15,7 +18,7 @@ pipeline {
         stage('Build Docker Image (v1)') {
             steps {
                 script {
-                    bat "docker build -t ${IMAGE_NAME}:v1 ."
+                    bat "\"${env.DOCKER_PATH}\" build -t ${IMAGE_NAME}:v1 ."
                 }
             }
         }
@@ -23,15 +26,15 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 withCredentials([string(credentialsId: 'docker-hub-password', variable: 'DOCKER_PASSWORD')]) {
-                    bat "echo %DOCKER_PASSWORD% | docker login -u dilip087 --password-stdin"
-                    bat "docker push ${IMAGE_NAME}:v1"
+                    bat "echo %DOCKER_PASSWORD% | \"${env.DOCKER_PATH}\" login -u dilip087 --password-stdin"
+                    bat "\"${env.DOCKER_PATH}\" push ${IMAGE_NAME}:v1"
                 }
             }
         }
         
         stage('Deploy to Kubernetes') {
             steps {
-                bat "kubectl apply -f deployment.yaml"
+                bat "\"${env.KUBECTL_PATH}\" apply -f deployment.yaml"
             }
         }
     }

@@ -15,7 +15,7 @@ pipeline {
         stage('Build Docker Image (v1)') {
             steps {
                 script {
-                    sh "docker build -t ${IMAGE_NAME}:v1 ."
+                    bat "docker build -t ${IMAGE_NAME}:v1 ."
                 }
             }
         }
@@ -23,15 +23,15 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 withCredentials([string(credentialsId: 'docker-hub-password', variable: 'DOCKER_PASSWORD')]) {
-                    sh "echo ${DOCKER_PASSWORD} | docker login -u dilip087 --password-stdin"
-                    sh "docker push ${IMAGE_NAME}:v1"
+                    bat "echo %DOCKER_PASSWORD% | docker login -u dilip087 --password-stdin"
+                    bat "docker push ${IMAGE_NAME}:v1"
                 }
             }
         }
         
         stage('Deploy to Kubernetes') {
             steps {
-                sh "kubectl apply -f deployment.yaml"
+                bat "kubectl apply -f deployment.yaml"
             }
         }
     }

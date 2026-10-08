@@ -3,9 +3,7 @@ pipeline {
     
     environment {
         IMAGE_NAME = 'dilip087/event-app'
-        // Full paths for Windows system execution
-        DOCKER_PATH = 'C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe'
-        KUBECTL_PATH = 'C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.exe'
+        DOCKER_PATH = 'C:\\Users\\itzme\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe'
     }
     
     stages {
@@ -34,7 +32,7 @@ pipeline {
         
         stage('Deploy to Kubernetes') {
             steps {
-                bat "\"${env.KUBECTL_PATH}\" apply -f deployment.yaml"
+                bat "kubectl apply -f deployment.yaml"
             }
         }
     }

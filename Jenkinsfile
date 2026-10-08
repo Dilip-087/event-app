@@ -7,6 +7,7 @@ pipeline {
         KUBECTL_PATH = 'C:\\Users\\itzme\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe'
         DOCKER_HOST = 'npipe:////./pipe/docker_engine'
         DOCKER_CONFIG = 'C:\\Users\\itzme\\.docker'
+        KUBECONFIG = 'C:\\Users\\itzme\\.kube\\config'
     }
     
     stages {
